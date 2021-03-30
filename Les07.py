@@ -59,6 +59,4 @@ C = A + B
 print(C)
 
 
-class Person:
-    name: str
 
