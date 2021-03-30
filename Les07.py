@@ -57,3 +57,8 @@ A = Point(3, 5)
 B = Point(10, -4)
 C = A + B
 print(C)
+
+
+class Person:
+    name: str
+
