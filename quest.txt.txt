@@ -1,0 +1,3 @@
+print('Whats your name')
+print('What are you doing?')
+print('Would you like coffee?')
