@@ -1,9 +1,0 @@
-print('Hello world!');
-print('whats up?');
-print('Hello, my dear friend');
-print('Glad to see you');
-<<<<<<< HEAD
-print('Nice to see you');
-
-
-
