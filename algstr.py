@@ -334,20 +334,20 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 
 
 # Рекурсивный поиск чисел Фибоначчи
-def test_fib(func):
-    lst = [1, 1, 2, 3, 5, 8, 13, 21, 34]
-    for i, item in enumerate(lst):
-        assert item == func(i)
-        print(f'Test {i} Ok')
+# def test_fib(func):
+#     lst = [1, 1, 2, 3, 5, 8, 13, 21, 34]
+#     for i, item in enumerate(lst):
+#         assert item == func(i)
+#         print(f'Test {i} Ok')
 
 
-def fib(n):
-    if n < 2:
-        return 1
-    return fib(n-1) + fib(n-2)
+# def fib(n):
+#     if n < 2:
+#         return 1
+#     return fib(n-1) + fib(n-2)
 
 
-cProfile.run('fib(20)')
+# cProfile.run('fib(20)')
 # print(test_fib(fib))
 #fib(10) - 1000 loops, best of 5: 17.6 usec per loop
 #fib(15) - 1000 loops, best of 5: 197 usec per loop
@@ -357,3 +357,76 @@ cProfile.run('fib(20)')
 #fib(10) -  177/1    0.000    0.000    0.000    0.000 algstr.py:344(fib)
 #fib(15) -  1973/1    0.001    0.000    0.001    0.001 algstr.py:344(fib)
 #fib(20) -  21891/1    0.009    0.000    0.009    0.009 algstr.py:344(fib)
+
+# Рекурсия + словарь
+# def test_fib(func):
+#     lst = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+#     for i, item in enumerate(lst):
+#         assert item == func(i)
+#         print(f'Test {i} Ok')
+
+
+# def fib_dict(n):
+#     fib_d = {0: 0, 1: 1}
+#
+#     def _fib_dict(n):
+#         if n in fib_d:
+#             return fib_d[n]
+#
+#         fib_d[n] = _fib_dict(n - 1) + _fib_dict(n - 2)
+#         return fib_d[n]
+#
+#     return _fib_dict(n)
+
+
+# test_fib(fib_dict)
+
+# fib_dict(10) - 1000 loops, best of 5: 4.29 usec per loop
+# fib_dict(15) - 1000 loops, best of 5: 5.94 usec per loop
+# fib_dict(20) - 1000 loops, best of 5: 8 usec per loop
+# fib_dict(100) - 1000 loops, best of 5: 47.7 usec per loop
+# fib_dict(200) - 1000 loops, best of 5: 99.2 usec per loop
+# fib_dict(500) - 1000 loops, best of 5: 278 usec per loop
+
+# cProfile.run('fib_dict(500)')
+
+#fib_dict(10) -  19/1    0.000    0.000    0.000    0.000 algstr.py:372(_fib_dict)
+#fib_dict(20) -  39/1    0.000    0.000    0.000    0.000 algstr.py:372(_fib_dict)
+#fib_dict(100) -  199/1    0.000    0.000    0.000    0.000 algstr.py:372(_fib_dict)
+#fib_dict(500) -  999/1    0.000    0.000    0.000    0.000 algstr.py:372(_fib_dict)
+
+# Рекурсия и список
+
+def test_fib(func):
+    lst = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    for i, item in enumerate(lst):
+        assert item == func(i)
+        print(f'Test {i} Ok')
+
+
+def fib_list(n):
+    fib_l = [None] * 1000
+    fib_l[:2] = [0, 1]
+
+    def _fib_list(n):
+        if fib_l[n] is None:
+            fib_l[n] = _fib_list(n - 1) + _fib_list(n - 2)
+        return fib_l[n]
+
+    return _fib_list(n)
+
+
+# test_fib(fib_list)
+
+# fib_list(10) - 1000 loops, best of 5: 11.4 usec per loop
+# fib_list(20) - 1000 loops, best of 5: 16.7 usec per loop
+# fib_list(100) - 1000 loops, best of 5: 43.1 usec per loop
+# fib_list(200) - 1000 loops, best of 5: 93.2 usec per loop
+# fib_list(500) - 1000 loops, best of 5: 218 usec per loop
+
+cProfile.run('fib_list(500)')
+
+#fib_list(10) - 19/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
+#fib_list(20) - 39/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
+#fib_list(100) - 199/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
+#fib_list(500) - 999/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
