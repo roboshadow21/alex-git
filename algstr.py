@@ -1,6 +1,7 @@
 import random
 import timeit
 import cProfile
+import functools
 # Алгоритмы и структуры данных
 
 # class Stack:
@@ -397,23 +398,23 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 
 # Рекурсия и список
 
-def test_fib(func):
-    lst = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-    for i, item in enumerate(lst):
-        assert item == func(i)
-        print(f'Test {i} Ok')
+# def test_fib(func):
+#     lst = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+#     for i, item in enumerate(lst):
+#         assert item == func(i)
+#         print(f'Test {i} Ok')
 
 
-def fib_list(n):
-    fib_l = [None] * 1000
-    fib_l[:2] = [0, 1]
-
-    def _fib_list(n):
-        if fib_l[n] is None:
-            fib_l[n] = _fib_list(n - 1) + _fib_list(n - 2)
-        return fib_l[n]
-
-    return _fib_list(n)
+# def fib_list(n):
+#     fib_l = [None] * 1000
+#     fib_l[:2] = [0, 1]
+#
+#     def _fib_list(n):
+#         if fib_l[n] is None:
+#             fib_l[n] = _fib_list(n - 1) + _fib_list(n - 2)
+#         return fib_l[n]
+#
+#     return _fib_list(n)
 
 
 # test_fib(fib_list)
@@ -424,9 +425,53 @@ def fib_list(n):
 # fib_list(200) - 1000 loops, best of 5: 93.2 usec per loop
 # fib_list(500) - 1000 loops, best of 5: 218 usec per loop
 
-cProfile.run('fib_list(500)')
+# cProfile.run('fib_list(500)')
 
 #fib_list(10) - 19/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
 #fib_list(20) - 39/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
 #fib_list(100) - 199/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
 #fib_list(500) - 999/1    0.000    0.000    0.000    0.000 algstr.py:411(_fib_list)
+
+# Фибоначчи через цикл
+def test_fib(func):
+    lst = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    for i, item in enumerate(lst):
+        assert item == func(i)
+        print(f'Test {i} Ok')
+
+
+def fib_loop(n):
+    if n < 2:
+        return n
+    first, second = 0, 1
+    for i in range(2, n + 1):
+        first, second = second, first + second
+    return second
+
+# print(test_fib(fib_loop))
+
+#python -m timeit -n 1000 -a "import algstr" "algstr.fib_loop(10)"
+#fib_loop(10) - 1000 loops, best of 5: 756 nsec per loop
+#fib_loop(100) - 1000 loops, best of 5: 5.13 usec per loop
+#fib_loop(500) - 1000 loops, best of 5: 32.2 usec per loop
+#fib_loop(50000) - 1000 loops, best of 5: 29.9 msec per loop
+
+# cProfile.run('fib_loop(1000)')
+
+
+@functools.lru_cache()
+def fib(n):
+    if n < 2:
+        return 1
+    return fib(n-1) + fib(n-2)
+
+# fib(10) - 1000 loops, best of 5: 101 nsec per loop
+# fib(100) - 1000 loops, best of 5: 91.6 nsec per loop
+# fib(200) - 1000 loops, best of 5: 83.7 nsec per loop
+# UserWarning: The test results are likely unreliable.
+# The worst time (1.02 usec) was more than four times slower than the best time (83.7 nsec).
+
+cProfile.run('fib(200)')
+#fib(10) - 11/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
+#fib(100) - 101/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
+#fib(200) - 201/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
