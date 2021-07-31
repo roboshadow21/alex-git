@@ -184,7 +184,7 @@ import functools
 # lst2 = list(set(lst))
 # print(lst2)
 
-# Ключ словаря - изменяемый объект
+# Ключ словаря - не изменяемый объект
 
 set_x = {1, 2, 3}
 lst_x = [2, 4, 9]
@@ -471,7 +471,42 @@ def fib(n):
 # UserWarning: The test results are likely unreliable.
 # The worst time (1.02 usec) was more than four times slower than the best time (83.7 nsec).
 
-cProfile.run('fib(200)')
-#fib(10) - 11/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
+# cProfile.run('fib(200)')
+#fib(10) - 11/1    0.000
+# 0.000    0.000    0.000 algstr.py:462(fib)
 #fib(100) - 101/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
 #fib(200) - 201/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
+
+# Модуль Collections
+from collections import Counter
+
+a = Counter()
+b = Counter('abrakadabra')
+c = Counter({'red': 2, 'blue': 4})
+d = Counter(cat=4, dog=5)
+print(a, b, c, d, sep='\n')
+print(b['z'])
+b['z'] = 0
+print(b)
+print(list(b.elements()))
+print(b.most_common(2))
+q = Counter(a=4, b=6, c=-2, d=0)
+f= Counter(a=1, b=2, c=3, d=-2)
+q.subtract(f)
+print(q)
+print('*' * 50)
+print(set(q))
+print(dict(q))
+q.clear()
+print(q)
+print('*' * 50)
+x = Counter(a=3, b=1)
+y = Counter(a=1, b=2)
+print(x + y)
+print(x - y)
+print(x & y)
+print(x | y)
+print('*' * 50)
+z = Counter(a=2, b=-4)
+print(+z)
+print(-z)
