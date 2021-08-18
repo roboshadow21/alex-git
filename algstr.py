@@ -478,7 +478,7 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 #fib(200) - 201/1    0.000    0.000    0.000    0.000 algstr.py:462(fib)
 
 # Модуль Collections
-from collections import Counter, deque, defaultdict, OrderedDict, namedtuple
+from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, ChainMap
 
 # a = Counter()
 # b = Counter('abrakadabra')
@@ -647,57 +647,95 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple
 
 # namedtuple
 
-hero_1 = ('Aaz', 'Izverg', 100, 0.0, 250)
-print(hero_1[4])
+# hero_1 = ('Aaz', 'Izverg', 100, 0.0, 250)
+# print(hero_1[4])
 
 
-class Person:
+# class Person:
+#
+#     def __init__(self, name, race, health, mana, strength):
+#         self.name = name
+#         self.race = race
+#         self.health = health
+#         self.mana = mana
+#         self.strength = strength
 
-    def __init__(self, name, race, health, mana, strength):
-        self.name = name
-        self.race = race
-        self.health = health
-        self.mana = mana
-        self.strength = strength
 
+# hero_2 = Person('Aaz', 'Izverg', 100, 0.0, 250)
+# print(hero_2.mana)
+#
+# New_Person = namedtuple('New_Person', 'name, race, health, mana, strength')
+# hero_3 = New_Person('Aaz', 'Izverg', 100, 0.0, 250)
+# print(hero_3)
+# print(hero_3.race)
+#
+# prop = ['name', '3race', 'health', '_mana', 'strength']
+# New_Person_1 = namedtuple('New_Person_1', prop, rename=True) # переименование недопустимых имен (цифры и т.п)
+# hero_4 = New_Person_1('Aaz', 'Izverg', 100, 0.0, 250)
+# print(hero_4)
+#
+# print('*' * 50)
+# Point = namedtuple('Point', 'x, y, z')
+# p1 = Point(2, z=3, y=4)
+# print(p1)
+#
+# t = [5, 10, 15]
+# p2 = Point._make(t)
+# print(p2)
+# d2 = p2._asdict()
+# print(d2)
+#
+# p3 = p2._replace(x=6)
+# print(p3)
+#
+# print(p3._fields)
+#
+# print('*' * 50)
+#
+# New_Point = namedtuple('New_Point', 'x, y, z', defaults=[0, 0])
+# p4 = New_Point(5)
+# print(p4)
+#
+# print(p4._field_defaults)
+#
+# dct = {'x': 10, 'y': 20, 'z': 30}
+# p5 = New_Point(**dct)
+# print(p5)
 
-hero_2 = Person('Aaz', 'Izverg', 100, 0.0, 250)
-print(hero_2.mana)
+# ChainMap
 
-New_Person = namedtuple('New_Person', 'name, race, health, mana, strength')
-hero_3 = New_Person('Aaz', 'Izverg', 100, 0.0, 250)
-print(hero_3)
-print(hero_3.race)
-
-prop = ['name', '3race', 'health', '_mana', 'strength']
-New_Person_1 = namedtuple('New_Person_1', prop, rename=True) # переименование недопустимых имен (цифры и т.п)
-hero_4 = New_Person_1('Aaz', 'Izverg', 100, 0.0, 250)
-print(hero_4)
-
+d_1 = {'a': 2, 'b': 4, 'c': 6}
+d_2 = {'a': 10, 'b': 20, 'd': 40}
+d_map = ChainMap(d_1, d_2)
+print(d_map)
+d_2['a'] = 100
+print(d_map)
+print(d_map['a'])
+print(d_map['d'])
 print('*' * 50)
-Point = namedtuple('Point', 'x, y, z')
-p1 = Point(2, z=3, y=4)
-print(p1)
-
-t = [5, 10, 15]
-p2 = Point._make(t)
-print(p2)
-d2 = p2._asdict()
-print(d2)
-
-p3 = p2._replace(x=6)
-print(p3)
-
-print(p3._fields)
-
+x = d_map.new_child({'a': 111, 'b': 222, 'c': 333, 'd': 444})
+print(x)
+print(x.maps[0])
+print(x.maps[-1])
+print(x.parents)
 print('*' * 50)
+y = d_map.new_child()
+print(y)
+print(y['a'])
+y['a'] = 1
+print(y)
+print(list(y))
+print(list(y.values()))
 
-New_Point = namedtuple('New_Point', 'x, y, z', defaults=[0, 0])
-p4 = New_Point(5)
-print(p4)
+import argparse
+defaults = {'ip': 'localhost', 'port': 7777}
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--ip')
+parser.add_argument('-p', '--port')
 
-print(p4._field_defaults)
+args = parser.parse_args()
+new_dict = {key: value for key, value in vars(args).items() if value}
+settings = ChainMap(new_dict, defaults)
+print(settings['ip'])
+print(settings['port'])
 
-dct = {'x': 10, 'y': 20, 'z': 30}
-p5 = New_Point(**dct)
-print(p5)
