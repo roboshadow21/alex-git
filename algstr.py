@@ -1,7 +1,11 @@
 import random
+import sys
 import timeit
 import cProfile
 import functools
+import ctypes
+import struct
+
 # Алгоритмы и структуры данных
 
 # class Stack:
@@ -585,6 +589,7 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 # print(f)
 # print(f['rex'])
 # print(f['jerry'])
+# print(f.get('thomas'))
 
 # OrderedDict
 # Сортируем по ключам
@@ -606,7 +611,7 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 # Удаляем последний элемент
 # new_b.popitem()
 # print(new_b)
-#
+
 # # Удаляем первый элемент
 # new_b.popitem(last=False)
 # print(new_b)
@@ -619,11 +624,11 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 #
 # new_c = OrderedDict(sorted(a.items(), key=lambda x: len(x[0])))
 # print(new_c)
-
+#
 # for key in reversed(new_c):
 #     print(key, new_c[key])
-
-# Работа с файлом big_log.txt
+#
+# # Работа с файлом big_log.txt
 # N = 3000
 # with open('big_log.txt', 'r', encoding='utf-8') as f:
 #     log = deque(f, N)
@@ -704,38 +709,730 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 
 # ChainMap
 
-d_1 = {'a': 2, 'b': 4, 'c': 6}
-d_2 = {'a': 10, 'b': 20, 'd': 40}
-d_map = ChainMap(d_1, d_2)
-print(d_map)
-d_2['a'] = 100
-print(d_map)
-print(d_map['a'])
-print(d_map['d'])
+# d_1 = {'a': 2, 'b': 4, 'c': 6}
+# d_2 = {'a': 10, 'b': 20, 'd': 40}
+# d_map = ChainMap(d_1, d_2)
+# print(d_map)
+# d_2['a'] = 100
+# print(d_map)
+# print(d_map['a'])
+# print(d_map['d'])
+# print('*' * 50)
+# x = d_map.new_child({'a': 111, 'b': 222, 'c': 333, 'd': 444})
+# print(x)
+# print(x.maps[0])
+# print(x.maps[-1])
+# print(x.parents)
+# print('*' * 50)
+# y = d_map.new_child()
+# print(y)
+# print(y['a'])
+# y['a'] = 1
+# print(y)
+# print(list(y))
+# print(list(y.values()))
+#
+# import argparse
+# defaults = {'ip': 'localhost', 'port': 7777}
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-i', '--ip')
+# parser.add_argument('-p', '--port')
+#
+# args = parser.parse_args()
+# new_dict = {key: value for key, value in vars(args).items() if value}
+# settings = ChainMap(new_dict, defaults)
+# print(settings['ip'])
+# print(settings['port'])
+
+# b = 0b100110
+# print(b)
+# c = int('2cd50', base=24)
+# z = int('z', base=36)
+# print(z)
+
+# Работа списка
+# allocated = 0
+# for newsize in range(100):
+#     if allocated < newsize:
+#         new_allocated = (newsize >> 3) + (3 if newsize < 9 else 6)
+#         allocated = newsize + new_allocated
+#
+#         print(newsize, allocated)
+
+# Объекты в памяти
+
+# print(sys.version, sys.platform)
+#
+# a = 5
+# b = 125.54
+# c = 'Hello world'
+# print(sys.getsizeof(a))
+# print(sys.getsizeof(b))
+# print(sys.getsizeof(c))
+# lst = [i for i in range(10)]
+# print(sys.getsizeof(lst))
+#
+#
+# def show_size(x, level=0):
+#     print('\t' * level, f'type = {x.__class__}, size = {sys.getsizeof(x)}, object = {x}')
+#
+#     if hasattr(x, '__iter__'):
+#         if hasattr(x, 'items'):
+#             for xx in x.items():
+#                 show_size(xx, level + 1)
+#         elif not isinstance(x, str):
+#             for xx in x:
+#                 show_size(xx, level + 1)
+#
+# show_size(a)
+# show_size(b)
+# show_size(c)
+# show_size(lst)
+#
+# print('*' * 50)
+# t = tuple(lst)
+# show_size(t)
+# print('*' * 50)
+# s = set(lst)
+# show_size(s)
+# print('*' * 50)
+# d = {str(i): i for i in range(10)}
+# show_size(d)
+
+a = 59
+x = y = a
+b = 125.54
+# c = 'hello worldsssss'
+
+# print(id(str))
+# print(hash(c))
+# print(id(a))
+# print(id(type(a)))
+# print(sys.getsizeof(a))
+# print(ctypes.string_at(id(a), sys.getsizeof(a)))
+# print(struct.unpack('LLLLLLl', ctypes.string_at(id(a), sys.getsizeof(a))))
+# print(id(int))
+
+# print('*' * 50)
+# print(id(b))
+# print(sys.getsizeof(b))
+# z = b
+# b = 122.99
+# print(ctypes.string_at(id(b), sys.getsizeof(b)))
+# print(struct.unpack('LLLd', ctypes.string_at(id(b), sys.getsizeof(b))))
+# print(id(float))
+# print('*' * 50)
+# print(id(c))
+# print(sys.getsizeof(c))
+# print(ctypes.string_at(id(c), sys.getsizeof(c)))
+# print(struct.unpack('LLLLLLLLLLLii' + 'c' * 13, ctypes.string_at(id(c), sys.getsizeof(c))))
+# print(len(c))
+# print('*' * 50)
+# lst = [1, 2, 3, 4]
+# print(sys.getsizeof(lst))
+# print(struct.unpack('LLLLLLLLLi' + 'L' * 5 * 4, ctypes.string_at(id(lst), sys.getsizeof(lst))))
+
+# c = 'hello world'
+# print(id(c))
+# print(sys.getsizeof(c))
+# print(struct.unpack('LLLLLLLLLLLLc' + 'c' * len(c), ctypes.string_at(id(c), sys.getsizeof(c))))
+
+# СОРТИРОВКА
+# Пузырьком
+size = 10
+array = [i for i in range(size)]
+random.shuffle(array)
+print(array)
+
+# n = 1
+# while n < len(array):
+#     for i in range(len(array) - n):
+#         if array[i] > array[i + 1]:
+#             array[i], array[i + 1] = array[i + 1], array[i]
+#     n += 1
+# print(array)
+
+# for _ in array:
+#     for i in range(len(array) - 1):
+#         if array[i] > array[i + 1]:
+#             array[i], array[i + 1] = array[i + 1], array[i]
+
+# print(array)
+
+# Выбором
+
+
+# def selection_sort(array):
+#     for i in range(len(array)):
+#         idx_min = i
+#         for j in range(i + 1, len(array)):
+#             if array[j] < array[idx_min]:
+#                 idx_min = j
+#         array[idx_min], array[i] = array[i], array[idx_min]
+#
+#
+# selection_sort(array)
+# print(array)
+
+# Сортировка вставками
+
+
+def insertion_sort(array):
+    for i in range(1, len(array)):
+        spam = array[i]
+        j = i
+        while array[j - 1] > spam and j > 0:
+            array[j] = array[j - 1]
+            j -= 1
+            # print(j)
+        array[j] = spam
+        print(array)
+
+# insertion_sort(array)
+# print(array)
+
+# Сортировка Шелла
+
+
+def shell_sort(array):
+    assert len(array) < 4000, 'Массив слишком большой'
+    def new_increment(array):
+        inc = [1, 4, 10, 23, 57, 132, 301, 701, 1750]
+        while len(array) <= inc[-1]:
+            inc.pop()
+        while len(inc) > 0:
+            yield inc.pop()
+    count = 0
+    for increment in new_increment(array):
+        # print(increment)
+        for i in range(increment, len(array)):
+            # print(i)
+            for j in range(i, increment - 1, -increment):
+                # print(j)
+                if array[j - increment] <= array[j]:
+                    break
+                array[j], array[j - increment] = array[j - increment], array[j]
+                # print(array)
+                count += 1
+    # print(count)
+
+shell_sort(array)
+# print(array)
+
+# Быстрая сортировка Хоара
+
+
+def quick_sort(array):
+    if len(array) <= 1:
+        return array
+    pivot = random.choice(array)
+    s_ar = []
+    m_ar = []
+    l_ar = []
+    for item in array:
+        if item < pivot:
+            s_ar.append(item)
+        elif item > pivot:
+            l_ar.append(item)
+        elif item == pivot:
+            m_ar.append(item)
+        else:
+            raise Exception('Случилось непредвиденное')
+    return quick_sort(s_ar) + m_ar + quick_sort(l_ar)
+
+array_new = quick_sort(array)
+print(array_new)
+
+# То же, без использования дополнительной памяти
+
+
+def quick_sort_no_memory(array, fst, lst):
+    if fst >= lst:
+        return
+    pivot = array[random.randint(fst, lst)]
+    i, j = fst, lst
+    while i <= j:
+        while array[i] < pivot:
+            i += 1
+        while array[j] > pivot:
+            j -= 1
+        if i <= j:
+            array[i], array[j] = array[j], array[i]
+            i, j = i + 1, j - 1
+    quick_sort_no_memory(array, fst, j)
+    quick_sort_no_memory(array, i, lst)
+
+
+quick_sort_no_memory(array, 0, len(array) - 1)
+# print(array)
+
+# Разворот массива
+
+def revers(array):
+    for i in range(len(array) // 2):
+        array[i], array[len(array) - i - 1] = array[len(array) - i - 1], array[i]
+revers(array)
+# print(array)
+#
+# array.reverse()
+# print(array)
+# array.sort()
+# print(array)
+
+# print('*' * 50)
+# t = tuple(random.randint(0, 100) for _ in range(size))
+# print(t)
+# t = tuple(sorted(t))
+# print(t)
+
+# Сортировка с использованием ключа
+
+Person = namedtuple('Person', 'name, age')
+p1 = Person('Vasya', 25)
+p2 = Person('Kolya', 30)
+p3 = Person('Olya', 23)
+people = [p1, p2, p3]
+# print(people)
+
+
+def by_age(person):
+    return person.age
+
+
+# result = sorted(people, key=by_age)
+# print(result)
+
+from operator import attrgetter
+result2 = sorted(people, key=attrgetter('age'))
+# print(result2)
+
+# Графы
+
+graph = [
+    [0, 1, 1, 0],
+    [1, 0, 1, 1],
+    [1, 1, 0, 0],
+    [0, 1, 0, 0]
+]
+
+# print(*graph, sep='\n')
+
+# print('*' * 50)
+# Ориентированный граф
+# graph = [
+#     [0, 1, 1, 0],
+#     [0, 0, 1, 1],
+#     [0, 1, 0, 0],
+#     [0, 0, 0, 0]
+# ]
+
+# print(*graph, sep='\n')
+
 print('*' * 50)
-x = d_map.new_child({'a': 111, 'b': 222, 'c': 333, 'd': 444})
-print(x)
-print(x.maps[0])
-print(x.maps[-1])
-print(x.parents)
-print('*' * 50)
-y = d_map.new_child()
-print(y)
-print(y['a'])
-y['a'] = 1
-print(y)
-print(list(y))
-print(list(y.values()))
+# Взвешенный граф
 
-import argparse
-defaults = {'ip': 'localhost', 'port': 7777}
-parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--ip')
-parser.add_argument('-p', '--port')
+graph[0][1:3] = [2, 3]
+graph[1][2] = 2
+graph[2][1] = 2
 
-args = parser.parse_args()
-new_dict = {key: value for key, value in vars(args).items() if value}
-settings = ChainMap(new_dict, defaults)
-print(settings['ip'])
-print(settings['port'])
+# print(*graph, sep='\n')
 
+# Списки смежности
+# print('*' * 50)
+# graph1 = []
+# graph1.append([1, 2])
+# graph1.append([0, 2, 3])
+# graph1.append([0, 1])
+# graph1.append([1])
+# print(*graph1, sep='\n')
+
+# print('*' * 50)
+#
+# graph2 = {
+#     0: {1, 2},
+#     1: {0, 2, 3},
+#     2: {0, 1},
+#     3: {1}
+# }
+# print(graph2)
+#
+# if 3 in graph2[1]:
+#     print(True)
+
+# print('*' * 50)
+# Vertex = namedtuple('Vertex', ['vertex', 'edge'])
+# graph3 = []
+# graph3.append([Vertex(1, 2), Vertex(1, 3)])
+# graph3.append([Vertex(0, 2), Vertex(2, 2), Vertex(3, 1)])
+# graph3.append([Vertex(0, 3), Vertex(1, 2)])
+# graph3.append([Vertex(1, 1)])
+# print(*graph3, sep='\n')
+
+# for v in graph3[1]:
+    # print(graph3[1])
+    # if v.vertex == 3:
+        # print(True)
+
+class Graph:
+
+    def __init__(self, vertex, edge):
+        self.vertex = vertex
+        self.edge = edge
+
+
+# Список ребер
+
+# print('*' * 50)
+graph4 = [(0, 1), (0, 2), (1, 2), (2, 1), (1, 3)]
+
+# print(*graph4, sep='\n')
+
+# Поиск кратчайшего пути в ширину
+
+g = [
+    [0, 1, 1, 0, 1, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 1, 0, 0],
+    [1, 0, 1, 0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0, 0, 1, 1],
+    [0, 0, 1, 0, 1, 1, 0, 1],
+    [0, 0, 0, 0, 0, 1, 1, 0]
+]
+
+
+def bfs(graph, start, finish):
+    parent = [None for _ in range(len(graph))]
+    is_visited = [False for _ in range(len(graph))]
+    deq = deque([start])
+    is_visited[start] = True
+    while len(deq) > 0:
+        current = deq.pop()
+        if current == finish:
+            # return parent
+            break
+        for i, vertex in enumerate(graph[current]):
+            if vertex == 1 and not is_visited[i]:
+                is_visited[i] = True
+                parent[i] = current
+                deq.appendleft(vertex)
+    else:
+      return f'Из вершины {start} нельзя попасть в вершину {finish}'
+
+    cost = 0
+    way = deque([finish])
+    i = finish
+    while parent[i] != start:
+        cost += 1
+        way.appendleft(parent[i])
+        i = parent[i]
+    cost += 1
+    way.appendleft(start)
+    return f'Кратчайший путь {list(way)} длиною {cost} условных единиц'
+
+# s = int(input('От какой вершины идти: '))
+# s = int(input('От какой вершины идти: '))
+# f = int(input('До какой вершины идти: '))
+# print(bfs(g, s, f))
+
+# Алгоритм Дейкстры
+
+g1 = [
+    [0, 0, 1, 1, 9, 0, 0, 0],
+    [0, 0, 9, 4, 0, 0, 7, 0],
+    [0, 9, 0, 0, 3, 0, 6, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 6, 0],
+    [0, 0, 7, 0, 8, 1, 0, 0],
+    [0, 0, 0, 0, 0, 1, 2, 0]
+]
+
+def dijkstra(graph, start):
+    length = len(graph)
+    is_visited = [False] * length
+    cost = [float('inf')] * length
+    parent = [-1] * length
+    cost[start] = 0
+    # print(cost)
+    min_cost = 0
+    while min_cost < float('inf'):
+        is_visited[start] = True
+        for i, vertex in enumerate(graph[start]):
+            if vertex != 0 and not is_visited[i]:
+                if cost[i] > vertex + cost[start]:
+                    cost[i] = vertex + cost[start]
+                    parent[i] = start
+                    # print(parent)
+        min_cost = float('inf')
+        for i in range(length):
+            if min_cost > cost[i] and not is_visited[i]:
+                min_cost = cost[i]
+                start = i
+    return cost
+
+
+# s = int(input('От какой вершины идти: '))
+# print(dijkstra(g1, s))
+
+# Деревья
+# Создание
+from binarytree import tree, bst, Node, build
+
+# class MyNode:
+#     def __init__(self, data, right=None, left=None):
+#         self.data = data
+#         self.left = left
+#         self.right = right
+#
+a = tree(height=4, is_perfect=False)
+# print(a)
+# b = bst(height=3, is_perfect=True)
+# # print(b)
+# c = Node(7)
+# c.left = Node(3)
+# c.right = Node(11)
+# c.left.left = Node(1)
+# c.left.right = Node(5)
+# c.right.left = Node(9)
+# c.right.right = Node(13)
+# # print(c)
+#
+# d = build([7, 3, 11, 1, 5, 9, 13, None, 2, None, 6])
+# print(d)
+
+# Бинарный поиск. Алгоритм Хаффмана
+
+def search(bin_search_tree, number, path=''):
+    if bin_search_tree.value == number:
+        return f'Число {number} обнаружено по следующему пути:\nКорень{path}'
+    if number < bin_search_tree.value and bin_search_tree.left is not None:
+        return search(bin_search_tree.left, number, path=f'{path}\nШаг влево')
+    if number > bin_search_tree.value and bin_search_tree.right is not None:
+        return search(bin_search_tree.right, number, path=f'{path}\nШаг вправо')
+    return f'Число {number} отсутствует в дереве'
+
+
+bt = bst(height=5, is_perfect=False)
+# print(bt)
+# print(bt.value)
+# num = int(input('Введите число для поиска:'))
+# print(search(bt, num))
+
+# Хэш-функция
+
+h_list = [None] * 26
+
+
+def my_append(value):
+    index = ord(value[0]) - ord('a')
+    h_list[index] = value
+    print(h_list)
+
+a = 'apricot'
+my_append(a)
+b = 'banana'
+my_append(b)
+c = 'apple'
+my_append(c)
+
+def my_index(value):
+    letter = 26
+    index = 0
+    size = 10000
+    for i, char in enumerate(value):
+        index += (ord(char) - ord('a') + 1) * letter ** i
+    return index % size
+
+print(my_index(a))
+print(my_index(b))
+print(my_index(c))
+
+# Контроль целостности данных при их передаче
+import hashlib
+
+print(hashlib.sha1(b'Hello world!').hexdigest())
+print(hashlib.sha1(b'Hello world.').hexdigest())
+print(hashlib.sha1(b'qwetfghjj' + b'Hello world.').hexdigest())
+
+s = hashlib.sha1(b'Hello world!').hexdigest()
+print(s.encode('utf-8'))
+
+print(hashlib.sha1(b'dffetgf' + s.encode('utf-8')).hexdigest())
+
+# SHA-1 алгоритм
+# Сравнение строк
+
+
+def is_eq_str(a: str, b: str, verbose=False) -> bool:
+    assert len(a) > 0 and len(b) > 0, 'Строки не могут быть пустыми'
+    ha = hashlib.sha1(a.encode('utf-8')).hexdigest()
+    hb = hashlib.sha1(b.encode('utf-8')).hexdigest()
+    if verbose:
+        print(f'hash 1 = {ha}\nhash 2 = {hb}')
+    return ha == hb
+
+
+# s1 = input('Введите строку 1: ')
+# s2 = input('Введите строку 2: ')
+# print('Строки одинаковые' if is_eq_str(s1, s2, True) else 'Строки разные')
+
+# Поиск подстроки в строке. Алгоритм Рабина-Карпа
+
+def Rabin_Karp(s: str, subs: str) -> int:
+    assert len(s) > 0 and len(subs) > 0, 'Строки не могут быть пустыми'
+    assert len(s) >= len(subs), 'Подстрока длиннее строки'
+    len_sub = len(subs)
+    h_subs = hashlib.sha1(subs.encode('utf-8')).hexdigest()
+    for i in range(len(s) - len_sub + 1):
+        if h_subs == hashlib.sha1(s[i:i + len_sub].encode('utf-8')).hexdigest():
+            if s[i:i + len_sub] == subs:
+                return i
+    return -1
+
+
+# s_1 = input('Введите строку: ')
+# s_2 = input('Введите подстроку для поиска: ')
+
+# pos = Rabin_Karp(s_1, s_2)
+# print(pos)
+
+
+# Закодировать любую строку по методу Хаффмана
+
+import collections
+
+
+class Leaf:
+    """ вспомогательный класс Лист для создания дерева Хаффмана
+        key - буква из кодируемой строки
+        value - частота буквы в строке
+    """
+    def __init__(self, key: str, value: int):
+        self.key = key
+        self.value = value
+
+
+class Node:
+    """ вспомогательный класс Узел для построения дерева Хаффмана """
+
+    def __init__(self, value, left, right):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+class Haffman:
+    """ Класс, реализующий сжатие и восстановление строки по методу Хаффмана """
+    _data: list
+
+    def __init__(self):
+        """ _code_table - таблица кодирования: key - буква, value - двоичный код
+            _data - список для преобразования из строки в дерево
+            _real_str - строка для кодирования
+        """
+        self._code_table = dict()
+        self._data = []
+        self._real_str = ''
+
+    def _make_list(self, real_str):
+        """ формируем упорядоченный по убыванию список объектов класса Leaf """
+        counter = dict(collections.Counter(real_str))
+        counter = collections.OrderedDict(sorted(counter.items(), key=lambda k: k[1], reverse=True))
+        for key, value in counter.items():
+            self._data.append(Leaf(key, value))
+        return True
+
+    def _haffmans_tree(self):
+        """ функция формирует из списка объектов класса Leaf бинарное дерево по алгоритму Хаффмана """
+        while len(self._data) > 2:
+            b, a = self._data.pop(), self._data.pop()
+            spam = Node(a.value + b.value, a, b)
+            if spam.value > self._data[0].value:
+                self._data.insert(0, spam)
+            elif spam.value < self._data[-1].value:
+                self._data.append(spam)
+            else:
+                for i in range(1, len(self._data)):
+                    if self._data[i - 1].value >= spam.value > self._data[i].value:
+                        self._data.insert(i, spam)
+                        break
+        self._data = Node(self._data[0].value + self._data[1].value, self._data[0], self._data[1])
+
+    def _haffman_recursion(self, data: Node, code=''):
+        """ рекурсивный обход дерева и построение таблицы кодирования """
+        if isinstance(data, Node):
+            self._haffman_recursion(data.left, code=code + '0')
+            self._haffman_recursion(data.right, code=code + '1')
+        elif isinstance(data, Leaf):
+            self._code_table[data.key] = code
+
+    def _encode(self):
+        """ преобразование из строки в двоичный код
+            имитация со строковым '0' и '1' для демонстрации работы
+        """
+        result = []
+        for char in self._real_str:
+            result.append(self._code_table[char])
+        return ''.join(result)
+
+    def encode(self, real_str):
+        """ основной метод преобразования строки в код по алгоритму Хаффмана
+            на вход подается строка real_str: str
+            создается таблица для кодировки _code_table: dict
+            На выходе закодированная строка code_str: str
+        """
+        self.__init__()
+        self._real_str = real_str
+        self._make_list(real_str)
+        self._haffmans_tree()
+        self._haffman_recursion(self._data)
+        code_str = self._encode()
+        return code_str
+
+
+    def decode(self, code_str, code_table=None):
+        """ декодирование строки из '0' и '1' на основе таблицы кодирования code_table
+            если code_table не передан, используется полученная ранее таблица
+        """
+        if code_table:
+            self._code_table = code_table
+        decode_table = {value: key for key, value in self._code_table.items()}
+        result = []
+        i = 0
+        while i < len(code_str):
+            j = i + 1
+            while code_str[i:j] not in decode_table.keys():
+                j += 1
+            result.append(decode_table[code_str[i:j]])
+            i = j
+        real_str = ''.join(result)
+        return real_str
+
+    def get_table_code(self):
+        """ возвращает таблицу кодирования в виде словаря (буква: код)"""
+        if self._code_table:
+            return self._code_table
+        return False
+
+    def get_real_string_code(self):
+        """ возвращает строку из '0' и '1' - реальный код строки для кодирования """
+        if self._real_str:
+            result = []
+            for char in self._real_str:
+                result.append(bin(ord(char))[2:].zfill(8))
+            return ''.join(result)
+        return False
+
+
+if __name__ == '__main__':
+    my_str = input('Введите строку для кодирования: ')
+    haf = Haffman()
+    code_s = haf.encode(my_str)
+    print(haf.get_real_string_code())
+    print(code_s)
+    table = haf.get_table_code()
+    print(table)
+    real_1 = haf.decode(code_s, table)
+    real_2 = haf.decode(code_s)
+    print(real_1)
+    print(real_2)
