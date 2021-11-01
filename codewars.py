@@ -413,131 +413,14 @@ for el in li:
 
 print(int(li[0]) if li[0].isdigit() else int(li[1]))
 
-# li = s.split()
-# print(li)
-# operators = ['+', '-', '*', '/']
-# deq = deque(li)
-# print(deq)
-
-# li1 = [el for el in li if el in operators]
-# print(li1)
-# li2 = [el for el in li if el.isdigit()]
-# print(li2)
-# div = re.findall(r'\d\s\/\s\d', s)
-# mul = re.findall(r'\d\s\*\s\d', s)
-# plus = re.findall(r'\d\s\+\s\d', s)
-# print(div)
-# print(mul)
-# print(plus)
 
 
 
-# n = 0
-# while len(deq) >= 3:
-#     symb1 = deq.popleft()
-#     oper = deq.popleft()
-#     symb2 = deq.popleft()
-#     if oper == '/':
-#         res = int(symb1) // int(symb2)
-#         print(res)
-#         print(deq)
-#         temp = deq.popleft()
-#         deq.append(temp)
-#         deq.append(str(res))
-#         print(deq)
-#     elif oper == '*':
-#         res = int(symb1) * int(symb2)
-#         print(res)
-#         print(deq)
-#         temp = deq.popleft()
-#         deq.append(temp)
-#         deq.append(str(res))
-#         print(deq)
-#     elif oper == '+':
-#         res = int(symb1) + int(symb2)
-#         print(res)
-#         print(deq)
-#         temp = deq.popleft()
-#         deq.append(temp)
-#         deq.append(str(res))
-#         print(deq)
-#     elif oper == '-':
-#         res = int(symb1) - int(symb2)
-#         print(res)
-#         print(deq)
-#         temp = deq.popleft()
-#         deq.append(temp)
-#         deq.append(str(res))
-#         print(deq)
-#         print(res)
-#     n += 1
-#
-# print(res)
-# print(deq)
 
 
-# symb1 = deq.popleft()
-# oper = deq.popleft()
-# symb2 = deq.popleft()
-# if not symb1.isdigit():
-#     deq.append(symb1)
-#     deq.append(oper)
-#     deq.append(symb2)
-# print(deq)
 
-# while len(deq) >= 3:
-#     res = 0
-#     if '0' in deq:
-#         deq.remove('0')
-#     elif deq[0] in operators:
-#         temp = deq.popleft()
-#         deq.append(temp)
-#     elif deq[0].isdigit() and deq[1].isdigit():
-#         temp = deq.popleft()
-#         deq.append(temp)
-#     elif len(deq) == 3 and deq[0] == '-':
-#         res = int(deq[2]) - int(deq[1])
-#         deq.append(str(res))
-#     elif len(deq) == 3 and deq[0] == '+':
-#         res = int(deq[2]) + int(deq[1])
-#         deq.append(str(res))
-#     elif len(deq) == 3 and deq[0] == '*':
-#         res = int(deq[2]) * int(deq[1])
-#         deq.append(str(res))
-#     symb1 = deq.popleft()
-#     oper = deq.popleft()
-#     symb2 = deq.popleft()
-#     if symb1.isdigit() and symb2.isdigit() and oper in operators:
-#         if oper == '+':
-#             res = int(symb1) + int(symb2)
-#             deq.appendleft(str(res))
-#         elif oper == '-':
-#             res = int(symb1) - int(symb2)
-#             deq.appendleft(str(res))
-#         elif oper == '*':
-#             res = int(symb1) * int(symb2)
-#             deq.appendleft(str(res))
-#         elif oper == '/':
-#             res = int(symb1) / int(symb2)
-#             deq.appendleft(str(res))
-#         elif len(deq) == 3 and deq[0] in operators:
-#             res = int(deq[2]) - int(deq[2])
-#             deq.append(str(res))
-#
-#     elif symb1 == '(' or symb1 == ')':
-#         deq.append('0')
-#         deq.append(oper)
-#         deq.append(symb2)
-#     elif oper == '(' or oper == ')':
-#         deq.append(symb1)
-#         deq.append('0')
-#         deq.append(symb2)
-#     elif symb2 == '(' or symb2 == ')':
-#         deq.append(symb1)
-#         deq.append(oper)
-#         deq.append('0')
-#
-#     print(deq)
+
+
 
 
 
