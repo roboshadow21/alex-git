@@ -54,6 +54,13 @@ import struct
 #
 # print(func(1, 10))
 
+def fact(n):
+    if n <= 1:
+        return 1
+    return n * fact(n - 1)
+
+print(fact(5))
+
 # Функция Аккермана
 # import sys
 # sys.setrecursionlimit(3000)
@@ -842,7 +849,7 @@ b = 125.54
 size = 10
 array = [i for i in range(size)]
 random.shuffle(array)
-print(array)
+# print(array)
 
 # n = 1
 # while n < len(array):
@@ -886,7 +893,7 @@ def insertion_sort(array):
             j -= 1
             # print(j)
         array[j] = spam
-        print(array)
+        # print(array)
 
 # insertion_sort(array)
 # print(array)
@@ -941,7 +948,7 @@ def quick_sort(array):
     return quick_sort(s_ar) + m_ar + quick_sort(l_ar)
 
 array_new = quick_sort(array)
-print(array_new)
+# print(array_new)
 
 # То же, без использования дополнительной памяти
 
@@ -1226,7 +1233,7 @@ h_list = [None] * 26
 def my_append(value):
     index = ord(value[0]) - ord('a')
     h_list[index] = value
-    print(h_list)
+    # print(h_list)
 
 a = 'apricot'
 my_append(a)
@@ -1243,21 +1250,21 @@ def my_index(value):
         index += (ord(char) - ord('a') + 1) * letter ** i
     return index % size
 
-print(my_index(a))
-print(my_index(b))
-print(my_index(c))
+# print(my_index(a))
+# print(my_index(b))
+# print(my_index(c))
 
 # Контроль целостности данных при их передаче
 import hashlib
-
-print(hashlib.sha1(b'Hello world!').hexdigest())
-print(hashlib.sha1(b'Hello world.').hexdigest())
-print(hashlib.sha1(b'qwetfghjj' + b'Hello world.').hexdigest())
-
-s = hashlib.sha1(b'Hello world!').hexdigest()
-print(s.encode('utf-8'))
-
-print(hashlib.sha1(b'dffetgf' + s.encode('utf-8')).hexdigest())
+#
+# print(hashlib.sha1(b'Hello world!').hexdigest())
+# print(hashlib.sha1(b'Hello world.').hexdigest())
+# print(hashlib.sha1(b'qwetfghjj' + b'Hello world.').hexdigest())
+#
+# s = hashlib.sha1(b'Hello world!').hexdigest()
+# print(s.encode('utf-8'))
+#
+# print(hashlib.sha1(b'dffetgf' + s.encode('utf-8')).hexdigest())
 
 # SHA-1 алгоритм
 # Сравнение строк
@@ -1424,15 +1431,15 @@ class Haffman:
         return False
 
 
-if __name__ == '__main__':
-    my_str = input('Введите строку для кодирования: ')
-    haf = Haffman()
-    code_s = haf.encode(my_str)
-    print(haf.get_real_string_code())
-    print(code_s)
-    table = haf.get_table_code()
-    print(table)
-    real_1 = haf.decode(code_s, table)
-    real_2 = haf.decode(code_s)
-    print(real_1)
-    print(real_2)
+# if __name__ == '__main__':
+#     my_str = input('Введите строку для кодирования: ')
+#     haf = Haffman()
+#     code_s = haf.encode(my_str)
+#     print(haf.get_real_string_code())
+#     print(code_s)
+#     table = haf.get_table_code()
+#     print(table)
+#     real_1 = haf.decode(code_s, table)
+#     real_2 = haf.decode(code_s)
+#     print(real_1)
+#     print(real_2)
