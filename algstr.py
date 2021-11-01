@@ -72,36 +72,37 @@ def fib(n):
 # Функция Аккермана
 # import sys
 # sys.setrecursionlimit(3000)
-#
-#
-# def akk(m, n):
-#     if m == 0:
-#         return n + 1
-#     elif m > 0 and n == 0:
-#         return akk(m - 1, 1)
-#     return akk(m - 1, akk(m, n - 1))  # m > 0 n > 0
-#
-#
+
+
+def akk(m, n):
+    if m == 0:
+        return n + 1
+    elif m > 0 and n == 0:
+        return akk(m - 1, 1)
+    return akk(m - 1, akk(m, n - 1))  # m > 0 n > 0
+
+
 # print(akk(2, 0))
+
 # Алгоритм Евклида (наибольший общий делитель)
 # Циклический вычитание
-# def gcd(m, n):
-#     while m != n:
-#         if m > n:
-#             m -= n
-#         else:
-#             n -= m
-#     return m
+def gcd(m, n):
+    while m != n:
+        if m > n:
+            m -= n
+        else:
+            n -= m
+    return m
 
 
 # print(gcd(54, 24))
 
 
 # Рекурсивный
-# def gcd2(m, n):
-#     if n == 0:
-#         return m
-#     return gcd2(n, m % n)
+def gcd2(m, n):
+    if n == 0:
+        return m
+    return gcd2(n, m % n)
 
 
 # print(gcd2(54, 24))
@@ -109,26 +110,31 @@ def fib(n):
 # Циклический остаток от деления
 
 
-# def gcd3(m, n):
-#     while n != 0:
-#         m, n = n, m % n
-#     return m
+def gcd3(m, n):
+    while n != 0:
+        m, n = n, m % n
+    return m
+
+
+# print(gcd3(54, 24))
 
 # Решето Эратосфена (отбираем простые числа)
 
 
-# n = int(input('До какого числа получить список?: '))
-# sieve = [i for i in range(n)]
-# sieve[1] = 0
-# print(sieve)
-# for i in range(2, n):
-#     if sieve[i] != 0:
-#         j = i * 2
-#         while j < n:
-#             sieve[j] = 0
-#             j += i
-# result = [i for i in sieve if i != 0]
-# print(result)
+n = int(input('До какого числа получить список?: '))
+sieve = [i for i in range(n)]
+sieve[1] = 0
+print(sieve)
+for i in range(2, n):
+    if sieve[i] != 0:
+        j = i * 2
+        while j < n:
+            sieve[j] = 0
+            j += i
+            print(i)
+            print(f'J - {j}')
+result = [i for i in sieve if i != 0]
+print(result)
 
 # Перевод десятичного числа в двоичный формат
 
