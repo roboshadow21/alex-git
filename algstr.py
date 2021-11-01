@@ -59,7 +59,15 @@ def fact(n):
         return 1
     return n * fact(n - 1)
 
-print(fact(5))
+# print(fact(5))
+
+
+def fib(n):
+    if n < 2:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+# print(fib(10))
 
 # Функция Аккермана
 # import sys
