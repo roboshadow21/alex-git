@@ -377,48 +377,70 @@ for el in s:
         s = s.replace('(', ' ')
         # s = s.replace(')', ' ')
 
-print(s)
+# print(s)
+# li = s.split()
+# print(li)
+
+# for el in li:
+#     if el == '/':
+#         res = int(li[li.index(el) - 1]) // int(li[li.index(el) + 1])
+#         li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
+# print(li)
+
+# for el in li:
+#     if el == '*':
+#         #li.remove(')')    # adding
+#         res = int(li[li.index(el) - 1]) * int(li[li.index(el) + 1])
+#         li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
+# print(li)
+#
+# for el in li:
+#     if el == '+':
+#         res = int(li[li.index(el) - 1]) + int(li[li.index(el) + 1])
+#         li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
+# print(li)
+#
+# for el in li:
+#     if el == '-':
+#         res = int(li[li.index(el) - 1]) - int(li[li.index(el) + 1])
+#         li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
+#
+# print(int(li[0]) if li[0].isdigit() else int(li[1]))
+
+# Text align justify
+size = 7
+# s = '123 45 6'
+# s = '123 45 6'
+# s = '123 56 7 890 45 1 34 56 786 12 19'
+s = '1234567 8'
+# print(len(s))
 li = s.split()
 print(li)
-# for el in li:
-#     if el == '(':
-#         li.remove(el)
-        # li = li[li.index(el) + 1:]
-        # spam1 = li[i - 2]
-        # spam2 = li[i - 1]
+# print(len(li))
+lst = []
+for i in range(len(li)):
+    lst.append(li[i])
+    lst.append(' ')
 
-for el in li:
-    if el == '/':
-        res = int(li[li.index(el) - 1]) // int(li[li.index(el) + 1])
-        li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
-print(li)
+lst.pop()
+print(lst)
+temp = [None] * len(lst)
+print(temp)
+summ = 0
+lst2 = []
+for i in range(len(lst)):
+    summ += len(lst[i])
+    temp[i] = len(lst[i])
+    lst2.append(lst[i])
+    # if summ == size - 1 or summ % size == 0:
+    if summ == size - 1 or summ % size == 0:
+        lst2.append('\n')
+        summ = 0
 
-for el in li:
-    if el == '*':
-        #li.remove(')')    # adding
-        res = int(li[li.index(el) - 1]) * int(li[li.index(el) + 1])
-        li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
-print(li)
-
-for el in li:
-    if el == '+':
-        res = int(li[li.index(el) - 1]) + int(li[li.index(el) + 1])
-        li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
-print(li)
-
-for el in li:
-    if el == '-':
-        res = int(li[li.index(el) - 1]) - int(li[li.index(el) + 1])
-        li = li[:li.index(el) - 1] + [str(res)] + li[li.index(el) + 2:]
-
-print(int(li[0]) if li[0].isdigit() else int(li[1]))
-
-
-
-
-
-
-
+# print(summ)
+print(temp)
+print(lst2)
+print(''.join(lst2))
 
 
 

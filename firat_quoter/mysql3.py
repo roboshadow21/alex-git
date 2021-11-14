@@ -54,3 +54,59 @@
 #   created_at
 #   from news
 #   where user_id = 1;
+
+# select filename from media where user_id = 3
+#   and media_type_id = (
+#   select id from media_types where name like 'photo'
+#   );
+
+# select count(*) from media where user_id = 3
+#   and media_type_id = (
+#   select id from media_types where name like 'photo'
+#   );
+
+# select * from friendship where user_id = 1 and status is true;
+# select * from friendship where user_id = 1 and status;
+
+# select * from news where user_id in (
+#   select friend_id from friendship where user_id = 1 and status
+# );
+
+# select * from news where user_id = 1
+# UNION
+# select * from news where user_id in (
+#   select friend_id from friendship where user_id = 1 and status
+#   ) order by created_at desc limit 10;
+
+# select to_subject_id from news where user_id = 1
+# union
+# select to_subject_id from news where user_id in (
+#   select friend_id from friendship where user_id = 1 and status
+# );
+
+# select to_subject_id, count(*) from likes where to_subject_id in(
+#   select to_subject_id from news where user_id = 1
+#     union
+#   select to_subject_id from news where user_id in (
+#   select friend_id from friendship where user_id = 1 and status)
+# )
+# group by to_subject_id;
+
+# select count(id) as news, monthname(created_at) as month
+#   from news
+#   group by month
+#   order by field(month, 'January', 'February') desc;
+
+# select user_id,
+#        case (sex)
+#        when 'm' then 'man'
+#        when 'f' then 'woman'
+#        end as sex,
+#        'age'
+#  from profiles
+#  where user_id in (
+#   select friend_id
+#    from friendship
+#    where user_id = 1
+#     and confirmed_at is not null
+#  );
