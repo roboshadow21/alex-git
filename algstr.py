@@ -121,20 +121,20 @@ def gcd3(m, n):
 # Решето Эратосфена (отбираем простые числа)
 
 
-n = int(input('До какого числа получить список?: '))
-sieve = [i for i in range(n)]
-sieve[1] = 0
-print(sieve)
-for i in range(2, n):
-    if sieve[i] != 0:
-        j = i * 2
-        while j < n:
-            sieve[j] = 0
-            j += i
-            print(i)
-            print(f'J - {j}')
-result = [i for i in sieve if i != 0]
-print(result)
+# n = int(input('До какого числа получить список?: '))
+# sieve = [i for i in range(n)]
+# sieve[1] = 0
+# print(sieve)
+# for i in range(2, n):
+#     if sieve[i] != 0:
+#         j = i * 2
+#         while j < n:
+#             sieve[j] = 0
+#             j += i
+#             print(i)
+#             print(f'J - {j}')
+# result = [i for i in sieve if i != 0]
+# print(result)
 
 # Перевод десятичного числа в двоичный формат
 
@@ -142,11 +142,12 @@ print(result)
 # def binary(num):
 #     s = ''
 #     while num > 0:
+#         # s += str(num % 2)
 #         s = f'{num % 2} {s}'
 #         num //= 2
 #     return s
-
-
+#
+#
 # print(binary(25))
 
 
@@ -211,8 +212,8 @@ print(result)
 
 # Ключ словаря - не изменяемый объект
 
-set_x = {1, 2, 3}
-lst_x = [2, 4, 9]
+# set_x = {1, 2, 3}
+# lst_x = [2, 4, 9]
 # dict_x = {set_x: lst_x}  # ошибка, изменяемый объект
 # print(dict_x)
 # dict_x = {frozenset(set_x): lst_x}
@@ -234,8 +235,8 @@ lst_x = [2, 4, 9]
 #             right = pos - 1
 #         pos = (left + right) // 2
 #     return -1 if left > right else pos
-
-
+#
+#
 # a = [random.randint(0, 1000) for _ in range(100)]
 # a.sort()
 # print(a, end=' ')
@@ -276,7 +277,7 @@ lst_x = [2, 4, 9]
 # МАТРИЦА
 size = 5
 matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
-#
+
 # for line in matrix:
 #     for item in line:
 #         print(f'{item:>4}', end='')
@@ -286,7 +287,7 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 # Посчитать сумму строк и столбцов матрицы
 
 # sum_column = [0] * len(matrix[0])
-
+# print(sum_column)
 # for line in matrix:
 #     sum_line = 0
 #     for i, item in enumerate(line):
@@ -327,6 +328,7 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 # for i in range(1, k + 1):
 #     name = input('Enter name of enterprises: ')
 #     enterprises[name] = [float(input('Plan: ')), float(input('Fact: '))]
+#     # print(enterprises[name])
 #     enterprises[name].append(enterprises[name][1] / enterprises[name][0])
 # print('Fact profit more then 10, but not plan (less then 100%)')
 # for key, value in enterprises.items():
@@ -334,6 +336,8 @@ matrix = [[random.randint(1, 10) for _ in range(size)] for _ in range(size)]
 #         print(f'Предприятие {key} заработало {value[1]}, что составило {value[2] * 100:.2f}%')
 
 # Эмпирическая оценка алгоритмов
+# python -m timeit -n 1000 -s "import hw_alg" "hw_alg.div()"
+
 # x = 2 + 2
 # print(timeit.timeit('x = 2 + 2'))
 # print(timeit.timeit('x = sum(range(10))'))
