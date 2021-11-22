@@ -520,7 +520,7 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 # print(list(b.elements()))
 # print(b.most_common(2))
 # q = Counter(a=4, b=6, c=-2, d=0)
-# f= Counter(a=1, b=2, c=3, d=-2)
+# f = Counter(a=1, b=2, c=3, d=-2)
 # q.subtract(f)
 # print(q)
 # print('*' * 50)
@@ -568,6 +568,7 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 # # Другие методы
 # print('*' * 50)
 # g = deque([i for i in range(5)], maxlen=7)
+# print(g)
 # print(g.count(2))
 # print(g.index(3))
 # g.insert(2, 6)

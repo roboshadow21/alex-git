@@ -409,38 +409,63 @@ for el in s:
 
 # Text align justify
 size = 7
-# s = '123 45 6'
-# s = '123 45 6'
-# s = '123 56 7 890 45 1 34 56 786 12 19'
-s = '1234567 8'
+# s = '1234 453 6'
+s = '123 45 678 897 3 23'
+# s = '123 56 7 890 45 1 34 56 786 12 19 567 897 23411'
+# s = '1234 4564 7 8 6 7 9'
 # print(len(s))
+# n = количество элементов в списке
+# symb = количесто символов в элементах
+# num_space = количество пробелов
+# space_len = длина пробелов в диапазоне
 li = s.split()
 print(li)
-# print(len(li))
-lst = []
-for i in range(len(li)):
-    lst.append(li[i])
-    lst.append(' ')
-
-lst.pop()
-print(lst)
-temp = [None] * len(lst)
-print(temp)
 summ = 0
-lst2 = []
-for i in range(len(lst)):
-    summ += len(lst[i])
-    temp[i] = len(lst[i])
-    lst2.append(lst[i])
-    # if summ == size - 1 or summ % size == 0:
-    if summ == size - 1 or summ % size == 0:
-        lst2.append('\n')
+for i in range(len(li) - 1):
+    summ += len(li[i])
+    if summ + len(li[i + 1]) > 7:
+        li[i + 1:i + 1] = '\n'
+        # print(li)
         summ = 0
 
-# print(summ)
-print(temp)
-print(lst2)
-print(''.join(lst2))
+
+# print(li)
+# for el in li:
+#     print(li[0:li.index('\n') + 1])
+
+# li[2:2] = '\n'
+# print(li)
+
+
+
+
+
+
+
+
+
+# print(len(li))
+# lst = []
+# for i in range(len(li)):
+#     lst.append(li[i])
+#     lst.append(' ')
+
+# print(lst)
+# temp = [None] * len(lst)
+# print(temp)
+# summ = 0
+# lst2 = []
+# for i in range(len(lst) - 1):
+#     summ += len(lst[i])
+#     lst2.append(lst[i])
+#     if summ + len(lst[i + 1]) >= size:
+#     # if summ == size or summ % size == 0:
+#         lst2.append('\n')
+#         summ = 0
+
+# print(lst2)
+# print(len(lst2[0:lst2.index('\n')]))
+# print(''.join(lst2))
 
 
 

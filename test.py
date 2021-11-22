@@ -325,7 +325,7 @@ def my_sum(n):
         return n
     return n + my_sum(n - 1)
 
-print(my_sum(5))
+# print(my_sum(5))
 
 
 def fib(n):
