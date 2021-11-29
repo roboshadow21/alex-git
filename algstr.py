@@ -603,7 +603,7 @@ from collections import Counter, deque, defaultdict, OrderedDict, namedtuple, Ch
 # for k, v in list_1:
 #     c[k].append(v)
 # print(c)
-#
+# #
 # list_2 = [('cat', 1), ('dog', 5), ('cat', 2), ('mouse', 1), ('dog', 1), ('dog', 5)]
 # d = defaultdict(set)
 # for k, v in list_1:
@@ -868,7 +868,7 @@ b = 125.54
 size = 10
 array = [i for i in range(size)]
 random.shuffle(array)
-# print(array)
+print(array)
 
 # n = 1
 # while n < len(array):
@@ -882,7 +882,7 @@ random.shuffle(array)
 #     for i in range(len(array) - 1):
 #         if array[i] > array[i + 1]:
 #             array[i], array[i + 1] = array[i + 1], array[i]
-
+#
 # print(array)
 
 # Выбором
@@ -920,29 +920,44 @@ def insertion_sort(array):
 # Сортировка Шелла
 
 
-def shell_sort(array):
-    assert len(array) < 4000, 'Массив слишком большой'
-    def new_increment(array):
-        inc = [1, 4, 10, 23, 57, 132, 301, 701, 1750]
-        while len(array) <= inc[-1]:
-            inc.pop()
-        while len(inc) > 0:
-            yield inc.pop()
-    count = 0
-    for increment in new_increment(array):
-        # print(increment)
-        for i in range(increment, len(array)):
-            # print(i)
-            for j in range(i, increment - 1, -increment):
-                # print(j)
-                if array[j - increment] <= array[j]:
-                    break
-                array[j], array[j - increment] = array[j - increment], array[j]
-                # print(array)
-                count += 1
+# def shell_sort(array):
+#     assert len(array) < 4000, 'Массив слишком большой'
+#     def new_increment(array):
+#         inc = [1, 4, 10, 23, 57, 132, 301, 701, 1750]
+#         while len(array) <= inc[-1]:
+#             inc.pop()
+#         while len(inc) > 0:
+#             yield inc.pop()
+#     count = 0
+#     for increment in new_increment(array):
+#         # print(increment)
+#         for i in range(increment, len(array)):
+#             # print(i)
+#             for j in range(i, increment - 1, -increment):
+#                 # print(j)
+#                 if array[j - increment] <= array[j]:
+#                     break
+#                 array[j], array[j - increment] = array[j - increment], array[j]
+#                 # print(array)
+#                 count += 1
     # print(count)
 
-shell_sort(array)
+# shell_sort(array)
+# print(array)
+
+
+def shell(data):
+    inc = len(data) // 2
+    while inc:
+        for i, el in enumerate(data):
+            while i >= inc and data[i - inc] > el:
+                data[i] = data[i - inc]
+                i -= inc
+            data[i] = el
+        inc = 1 if inc == 2 else int(inc * 5.0 / 11)
+    return data
+
+# shell(array)
 # print(array)
 
 # Быстрая сортировка Хоара
@@ -967,7 +982,7 @@ def quick_sort(array):
     return quick_sort(s_ar) + m_ar + quick_sort(l_ar)
 
 array_new = quick_sort(array)
-# print(array_new)
+print(array_new)
 
 # То же, без использования дополнительной памяти
 
