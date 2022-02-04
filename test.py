@@ -292,10 +292,10 @@ def my_sum(n):
 
 def fib(n):
     if n <= 2:
-    # if n == 1 or n ==2:
+        # if n == 1 or n ==2:
         return 1
     # else:
-    return fib(n-1) + fib(n-2)
+    return fib(n - 1) + fib(n - 2)
 
 
 def show(txt):
@@ -304,6 +304,7 @@ def show(txt):
     else:
         print('|', txt[-1], end='', sep='')
         show(txt[:-1])
+
 
 # li = [1, 3, 5, 7, 11, 23, 34, 56, 78, 122]
 
@@ -325,6 +326,7 @@ def my_sum(n):
         return n
     return n + my_sum(n - 1)
 
+
 # print(my_sum(5))
 
 
@@ -333,22 +335,66 @@ def fib(n):
         return 1
     return fib(n - 1) + fib(n - 2)
 
+
 for i in range(12):
     print(my_sum(i), end=' ')
 print()
 for j in range(15):
     print(fib(j + 1), end=' ')
 print()
+
+
 def show(txt):
     if len(txt) == 0:
         print('|')
     else:
         print("|", txt[-1], end='', sep='')
         show(txt[:-1])
+
+
 show('hello')
 show([1, 2, 3, 4, 5])
+#
+# import cProfile
+#
+# cProfile.run('fib(2)')
 
-import cProfile
+#n - размерность матрицы n x n
+#mat - результирующая матрица
+#st - текущее значение-счетчик для записи в матрицу
+#m - коеффициент, используемый для заполнения верхней
+#матрицы последующих витков, т.к. одномерные матрицы
+#следующих витков имеют меньше значений
 
-cProfile.run('fib(2)')
-
+# n = int(input("Enter n: "))
+# mat = [[0] * n for i in range(n)]
+# st, m = 1, 0
+# # Заранее присваиваю значение центральному элементу
+# # матрицы
+# mat[n // 2][n // 2] = n * n
+# for v in range(n // 2):
+#     # Заполнение верхней горизонтальной матрицы
+#     for i in range(n - m):
+#         mat[v][i + v] = st
+#         st += 1
+#         # i+=1
+#     # Заполнение правой вертикальной матрицы
+#     for i in range(v + 1, n - v):
+#         mat[i][-v - 1] = st
+#         st += 1
+#         # i+=1
+#     # Заполнение нижней горизонтальной матрицы
+#     for i in range(v + 1, n - v):
+#         mat[-v - 1][-i - 1] = st
+#         st += 1
+#         # i+=1
+#     # Заполнение левой вертикальной матрицы
+#     for i in range(v + 1, n - (v + 1)):
+#         mat[-i - 1][v] = st
+#         st += 1
+#         # i+=1
+#     # v+=1
+#     m += 2
+# # Вывод результата на экран
+# for i in mat:
+#     print(*i)
