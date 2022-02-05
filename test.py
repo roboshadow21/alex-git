@@ -398,24 +398,40 @@ show([1, 2, 3, 4, 5])
 # # Вывод результата на экран
 # for i in mat:
 #     print(*i)
-text = 'Как важно знать в начале\nмножество вещей\nОднако же потом\nУзнаем еще больше'
-f = open('test.txt', 'w', encoding='utf-8')
-f.write(text)
-f.close()
+# text = 'Как важно знать в начале\nмножество вещей\nОднако же потом\nУзнаем еще больше'
+# f = open('test.txt', 'w', encoding='utf-8')
+# f.write(text)
+# f.close()
 
-f = open('test.txt', 'r', encoding='utf-8')
-obj = f.readline()
+# f = open('test.txt', 'r', encoding='utf-8')
+# obj = f.readline()
 # print(obj)
-k = 1
-while obj != '':
-    print(f'{k}) ', end='')
-    for symb in obj:
-        if symb == ' ':
-            symb = '_'
-        print(symb, end='')
-    k += 1
-    obj = f.readline()
+# k = 1
+# while obj != '':
+#     print(f'{k}) ', end='')
+#     for symb in obj:
+#         if symb == ' ':
+#             symb = '_'
+#         print(symb, end='')
+#     k += 1
+#     obj = f.readline()
 # for line in obj:
 #     print(f'[{k}]', line)
 #     k += 1
-f.close()
+# f.close()
+
+matr = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+for raw in matr:
+    print()
+    for col in raw:
+        print(col, end=' ')
+
+print()
+print('*' * 20)
+
+for i in matr:
+    print(*i)
