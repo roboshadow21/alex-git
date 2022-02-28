@@ -320,41 +320,6 @@ def show(txt):
 #         idx = (left + right) // 2
 #     return -1 if left > right else f'Элемент найден на позиции {idx}'
 
-
-def my_sum(n):
-    if n == 0:
-        return n
-    return n + my_sum(n - 1)
-
-
-# print(my_sum(5))
-
-
-def fib(n):
-    if n < 2:
-        return 1
-    return fib(n - 1) + fib(n - 2)
-
-
-for i in range(12):
-    print(my_sum(i), end=' ')
-print()
-for j in range(15):
-    print(fib(j + 1), end=' ')
-print()
-
-
-def show(txt):
-    if len(txt) == 0:
-        print('|')
-    else:
-        print("|", txt[-1], end='', sep='')
-        show(txt[:-1])
-
-
-show('hello')
-show([1, 2, 3, 4, 5])
-#
 # import cProfile
 #
 # cProfile.run('fib(2)')
@@ -420,18 +385,43 @@ show([1, 2, 3, 4, 5])
 #     k += 1
 # f.close()
 
-matr = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
-for raw in matr:
-    print()
-    for col in raw:
-        print(col, end=' ')
+# matr = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9]
+# ]
+# for raw in matr:
+#     print()
+#     for col in raw:
+#         print(col, end=' ')
+#
+# print()
+# print('*' * 20)
+#
+# for i in matr:
+#     print(*i)
 
-print()
-print('*' * 20)
+# with open('test.txt', 'a+', encoding='utf-8') as f:
+#     f.write('\nИтоговая строка\n')
+# with open('test.txt', 'r', encoding='utf-8') as f:
+#     obj = f.read()
+# print(obj)
 
-for i in matr:
-    print(*i)
+# text = 'Python'
+# f = open('test.txt', 'w+t', encoding='utf-8')
+# f.write(text)
+# f.seek(0)
+# print(f.tell(), '->', f.read(1))
+# f.seek(0, 2)
+# num = f.tell()-1
+# f.seek(num)
+# print(f.tell(), '->', f.read(1))
+# f.seek(0)
+# f.read(3)
+# print(f.read(3))
+# f.close()
+
+
+
+
+

@@ -410,7 +410,7 @@ for el in s:
 # Text align justify
 size = 7
 # s = '1234 453 6'
-s = '123 45 678 897 3 23'
+s = '123 45 678 897 3 23 567 89'
 # s = '123 56 7 890 45 1 34 56 786 12 19 567 897 23411'
 # s = '1234 4564 7 8 6 7 9'
 # print(len(s))
@@ -421,17 +421,37 @@ s = '123 45 678 897 3 23'
 li = s.split()
 print(li)
 summ = 0
-for i in range(len(li) - 1):
+lst = []
+for i in range(len(li)):
     summ += len(li[i])
-    if summ + len(li[i + 1]) > 7:
-        li[i + 1:i + 1] = '\n'
-        # print(li)
-        summ = 0
+    # lst.append(li[i])
+    # if summ + len(li[i + 1]) >= 7:
+    #     lst.append('\n')
+    #     summ = 0
+
+print(summ)
+print(li)
+# print(lst)
 
 
-# print(li)
-# for el in li:
-#     print(li[0:li.index('\n') + 1])
+
+# lst.insert(1, " " * 2)
+# print(lst)
+# for el in lst:
+#     if el.isalnum():
+#         print(el, end='')
+#         print(len(el))
+#     elif el.isspace():
+#         print("|", end='')
+# lst2 = []
+# for i in range(len(lst)):
+#     for j in
+# for el in lst[0:lst.index("\n") - 1]:
+#     lst2.append(el)
+#     lst2.append(" ")
+
+# print(lst2)
+
 
 # li[2:2] = '\n'
 # print(li)
