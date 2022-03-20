@@ -2,3 +2,4 @@ venv/
 __pycache__/
 big_log.txt
 data.txt
+test.py
