@@ -104,3 +104,88 @@
 # join profiles
 # on users.id = profiles.user_id
 # where users.id = 2;
+
+# select news.user_id, news.body, news.created_at
+# from news
+# join friendship
+# on news.user_id = friendship.friend_id
+# join users
+# on friendship.user_id = users.id
+# where news.user_id = 2;
+
+# select friend_id from friendship where user_id = 2;
+# select * from news where user_id in (7, 8, 17);
+
+# select messages.body, users.firstname, users.lastname, messages.created_at
+# from messages
+# join users
+# on users.id = messages.to_user_id
+# where messages.from_user_id = 2;
+
+# select messages.body, users.firstname, users.lastname, messages.created_at
+#   from messages
+#     join users
+#       on users.id = messages.from_user_id
+#   where messages.to_user_id = 2;
+
+# Считаем количество друзей
+# select firstname, lastname, count(*) as total_friends
+#   from users
+#     join friendship
+#       on users.id = friendship.user_id
+#   group by friendship.user_id
+#  order by total_friends desc;
+
+# Получаем данные о медиафайлах, владельце, лайках
+# select media.filename,
+#   media_types.name,
+#   count(*) as total_likes,
+#   concat(firstname, ' ', lastname) as owner
+#   from media
+#     join media_types
+#       on media.media_type_id = media_types.id
+#     join likes
+#       on media.id = likes.to_subject_id
+#     join users
+#       on users.id = media.user_id
+#   where users.id = 2
+#   group by media.id;
+
+# Подсчет количества сообществ у пользователя
+# select firstname, lastname, count(*) as total_communities
+#   from users
+#     join communities_users
+#       on users.id = communities_users.user_id
+#   group by users.id;
+
+# Среднее количество сообществ у пользователя
+# select avg(total_communities) as average_communities
+#   from (
+#     select firstname, lastname, count(*) as total_communities
+#       from users
+#         join communities_users
+#           on users.id = communities_users.user_id
+#   group by users.id
+#   ) as list;
+
+# select firstname, lastname, count(*) as total_likes
+#   from users
+#     join media
+#       on users.id = media.user_id
+#     join likes
+#       on media.id = likes.to_subject_id
+#   group by users.id
+#   order by total_likes desc
+#   limit 10;
+
+# Транзакция
+
+# start transaction;
+# insert into users (firstname, lastname, email, phone)
+#   values('Old', 'User', 'user@mail.com', 4567893);
+#
+# select @user_id := (select max(id) from users);
+#
+# insert into profiles (user_id, sex, birthday, hometown, photo_id)
+#   values(@user_id, 'M', '1969-09-29', 'Chimki', 459);
+# commit;
