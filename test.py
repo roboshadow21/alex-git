@@ -422,6 +422,262 @@ def show(txt):
 # f.close()
 
 
+# class MyClass:
+#
+#     def __init__(self, name, n=1):
+#         self.name = name
+#         if n == 1:
+#             self.next = None
+#         else:
+#             self.next = MyClass(self.name, n - 1)
+#         self.set()
+#
+#     def __del__(self):
+#         print('Deletion: ', self.code)
+#
+#     def set(self, num=1):
+#         self.code = self.name + '[' + str(num) + ']'
+#         if self.next is not None:
+#             self.next.set(num + 1)
+#
+#     def show(self):
+#         print(self.code)
+#         if self.next is not None:
+#             self.next.show()
+#
+#
+# A = MyClass('Alpha')
+# A.show()
+# B = MyClass('Bravo', 5)
+# B.show()
+# B.next.next.show()
 
+# class Person:
+#
+#     def __init__(self, name, surname):
+#         self.firstname = name
+#         self.lastname = surname
+#
+#     @property
+#     def get_full_name(self):
+#         print(f'{self.firstname} {self.lastname}')
+#
+# person = Person('Alex', 'Yurikov')
+# person2 = Person('John', 'Doe')
+# print(person.firstname)
+# person.get_full_name
+# print(person2.lastname)
+# person2.get_full_name
+
+# class MyClass:
+#
+#     def __init__(self, arg1, arg2):
+#         if type(arg1) is str and type(arg2) is str:
+#             self.text = arg1 + ' ' + arg2
+#             print(self.text)
+#         elif isinstance(arg1, int) and isinstance(arg2, int):
+#             self.num = arg1 + arg2
+#             print(self.num)
+#         else:
+#             print('No fields!')
+#
+#
+# obj = MyClass('Alex', 'Yurikov')
+# obj1 = MyClass(3, 11)
+# obj2 = MyClass('Alex', 31)
+# print(obj2.__dict__)
+# print(obj1.__dict__)
+
+# N 3
+
+# class MyClass:
+#
+#     def __init__(self, li: list):
+#         self.lst = []
+#         for el in li:
+#             if isinstance(el, int) or isinstance(el, float):
+#                 self.lst.append(el)
+#
+#     @property
+#     def show_arr(self):
+#         return self.lst
+#
+#     def average(self):
+#         return sum(self.lst) // len(self.lst)
+#
+#
+# l = MyClass([1, 's', 7, 'df', 2])
+# print(l.show_arr)
+# print(l.average())
+
+# 4
+
+# def create(li, name):
+#     class MyClass:
+#
+#         def __init__(self):
+#             MyClass.__name__ = name
+#             i = 1
+#             for el in li:
+#                 if isinstance(el, str):
+#                     setattr(self, el, i)
+#                     i += 1
+#     obj = MyClass()
+#     # return MyClass()
+#     return obj
+#
+#
+# A = create(['a', 'b', 'c'], 'Alex')
+# # print(obj.__getattribute__('a'))
+# # print(obj.__class__.__name__)
+# # print(obj.__dict__)
+# print(A.__dict__)
+# print(A.__class__.__name__)
+# print(A.a)
+
+# N 5
+
+# class A:
+#
+#     def __init__(self):
+#         self.first = 44
+#         self.second = 3
+#         self.fird = 6.1
+#         self.fourth = 7
+#
+# obj1 = A()
+#
+# print(obj1.__dict__.keys())
+#
+#
+# def create(arg):
+#     class B:
+#
+#         def __init__(self):
+#             for key, value in arg.__dict__.items():
+#                 if isinstance(arg.__dict__[key], int):
+#                     self.__dict__[key] = value
+#     obj2 = B()
+#     return obj2
+#
+#
+# res = create(obj1)
+#
+# print(res.__dict__)
+# print(res.second)
+
+# N 6
+
+# def new_func(number):
+#     lst = []
+#     li = list(filter(lambda x: x % 2 != 0, range(number)))
+#
+#     class MyClass:
+#         def __init__(self):
+#             self.num = random.choice(li)
+#     for k in range(number):
+#         lst.append(MyClass())
+#     return lst
+#
+#
+# res = new_func(10)
+# for obj in res:
+#     print(obj.num, end=' ')
+
+#  N 7
+
+# li1 = [1, 2, 3, 4]
+# li2 = [1, 2]
+# while len(li2) < len(li1):
+#     li2.append(0)
+# # print(li2)
+#
+#
+# class A:
+#
+#     def __init__(self, lst: list):
+#         self.arr = lst
+#
+#     def __getitem__(self, item):
+#         return self.arr[item]
+#
+#
+# obj1 = A([1, 2, 3, 4, 5])
+# print(obj1.arr[1])
+# obj2 = A([4, 5, 6])
+# print(obj2.arr[1])
+
+
+# def summ_obj(arg1, arg2):
+#     if len(arg1.arr) > len(arg2.arr):
+#         while len(arg2.arr) < len(arg1.arr):
+#             arg2.arr.append(0)
+#     obj3 = A([0 for _ in range(len(arg1.arr))])
+#     for i in range(len(arg1.arr)):
+#         obj3.arr[i] = arg1.arr[i] + arg2[i]
+#
+#     return obj3
+#
+#
+# print(summ_obj(obj1, obj2).arr)
+
+# N 8
+
+# def chain(n):
+#     class A:
+#
+#         def __init__(self):
+#             self.num = n
+#
+#     obj = A()
+#     print(obj)
+#     print(obj.num)
+#     if n < 2:
+#         return obj.num
+#     return chain(n - 1)
+
+
+# print(chain(5))
+
+# def chain(k):
+#     li = []
+#     class A:
+#
+#         def __init__(self, n=k):
+#             self.num = 0
+#             if n == 1:
+#                 self.next = None
+#             else:
+#                 self.next = A(n-1)
+#                 li.append(self.next)
+#                 self.num += 1
+#     obj = A(k)
+#     li.append(obj)
+#     return li[-1]
+#
+#
+# res = chain(3)
+# print(res)
+
+# N 9
+
+
+li = []
+class A:
+
+    def __init__(self, n):
+        self.num = 0
+        if n == 1:
+            self.next = None
+        else:
+            self.next = A(n-1)
+            li.append(self.next)
+            self.num += 1
+
+    def new_obj(self):
+        return A(1)
+obj = A(3)
+li.append(obj)
+print(li)
 
 
