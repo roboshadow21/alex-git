@@ -663,6 +663,8 @@ def show(txt):
 
 
 li = []
+
+
 class A:
 
     def __init__(self, n):
@@ -674,10 +676,24 @@ class A:
             li.append(self.next)
             self.num += 1
 
-    def new_obj(self):
-        return A(1)
+
 obj = A(3)
 li.append(obj)
 print(li)
+print(li[2].next)
+print(li[1].next)
 
 
+def add(i):
+    obj2 = A(1)
+    li.insert(i, obj2)
+    li[i + 1].next = obj2
+    li[i].next = li[i - 1]
+    return li
+
+
+lst = add(2)
+print(lst)
+print(lst[3].next)
+print(lst[2].next)
+print(lst[1].next)
