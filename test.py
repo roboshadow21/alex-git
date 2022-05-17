@@ -687,8 +687,13 @@ print(li[1].next)
 def add(i):
     obj2 = A(1)
     li.insert(i, obj2)
-    li[i + 1].next = obj2
-    li[i].next = li[i - 1]
+    if 0 < i < len(li) - 1:
+        li[i + 1].next = obj2
+        obj2.next = li[i - 1]
+    elif i == 0:
+        li[i + 1].next = obj2
+    elif i == len(li) - 1:
+        obj2.next = li[i - 1]
     return li
 
 
